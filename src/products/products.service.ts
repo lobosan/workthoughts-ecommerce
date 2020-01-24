@@ -9,4 +9,8 @@ export class ProductsService {
   getAllProducts(): Product[] {
     return this.products;
   }
+
+  getProductByCode(productCode: string): Product {
+    return this.products.find(product => product.productCode === productCode);
+  }
 }
