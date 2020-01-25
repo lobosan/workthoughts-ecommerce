@@ -19,23 +19,11 @@ export class CheckoutService {
     let totalPrice = 0;
     let loyaltyPoints = 0;
 
-    items.forEach(item => {
-      let discount = 0;
-
-      if (item.productCode.startsWith('DIS_10')) {
-        discount = item.price * 0.1;
-        loyaltyPoints += item.price / 10;
-      } else if (item.productCode.startsWith('DIS_15')) {
-        discount = item.price * 0.15;
-        loyaltyPoints += item.price / 15;
-      } else if (item.productCode.startsWith('DIS_20')) {
-        discount = item.price * 0.2;
-        loyaltyPoints += item.price / 20;
-      } else {
-        loyaltyPoints += item.price / 5;
-      }
-
-      totalPrice += item.price - discount;
+    items.forEach(({ productCode, price }) => {
+      let discount = +productCode.replace(/\D/g, '');
+      totalPrice += price - (price * discount) / 100;
+      discount = discount === 0 ? 5 : discount;
+      loyaltyPoints += price / discount;
     });
 
     return { totalPrice, loyaltyPoints };
