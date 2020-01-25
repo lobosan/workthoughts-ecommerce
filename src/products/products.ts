@@ -23,7 +23,7 @@ export const products: Product[] = [
   {
     id: uuid(),
     price: 24.99,
-    productCode: 'STOOL_WHITE',
+    productCode: 'DIS_20-STOOL_WHITE',
     name: 'White plastic footstool',
   },
   {

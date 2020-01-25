@@ -28,6 +28,9 @@ export class CheckoutService {
       } else if (item.productCode.startsWith('DIS_15')) {
         discount = item.price * 0.15;
         loyaltyPoints += item.price / 15;
+      } else if (item.productCode.startsWith('DIS_20')) {
+        discount = item.price * 0.2;
+        loyaltyPoints += item.price / 20;
       } else {
         loyaltyPoints += item.price / 5;
       }
